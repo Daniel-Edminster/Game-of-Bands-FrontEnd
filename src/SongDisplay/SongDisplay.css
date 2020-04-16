@@ -1,0 +1,201 @@
+.SongDisplay {
+    max-width: 1000px;
+    /* background: rgba(0,0,0,0.5); */
+   
+    border-left: 3px solid rgba(0,0,0,0.5);
+    border-right: 3px solid rgba(0,0,0,0.4);
+    /* border-radius: 1em; */
+    font-size: 0.9em;
+    margin: 5.5em auto 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.SongDisplay__Item:nth-child(odd) {
+    background: rgba(0,0,0,0.15);
+}
+.SongDisplay__Item:nth-child(even) {
+    background: rgba(0,0,0,0.2);
+}
+
+.SongDisplay__Item {
+    /* background: rgba(0,0,0,0.3); */
+    display: flex;
+    flex-flow: row nowrap;
+    /* border-bottom: 1px solid #ccc; */
+    /* background: rgba(0,0,0, 0.5); */
+    align-items: center;
+
+}
+.SongDisplay__Item:hover {
+    background: rgba(0,0,0,0.5);
+    /* transition: 0.1s ease; */
+
+}
+
+
+
+.SongDisplay__Item > * {
+    /* background-image: linear-gradient(to right, rgba(255,255,255, 0.06) 0%,rgba(255,255,255, 0) 100%); */
+    /* color: white; */
+
+
+}
+
+.SongDisplay__Item__PlayIcon {
+    /* max-height: 0.5em; */
+    color: purple;
+    background: rgba(0,0,0,0.2);
+    /* align-items: center; */
+    /* padding-right: 0.3rem; */
+    /* border: 1px solid red; */
+   
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    
+}
+
+
+.SongDisplay__Item__PlayIcon > * {
+    font-size: 1.4em;
+    margin-top: .1em;
+    /* align-content: center; */
+}
+.SongDisplay__Item__PlayIcon:hover {
+    color: rgb(168, 8, 168);
+    transition: 0.3s ease;
+}
+
+
+.SongDisplay__Item__PlayListAdd {
+    /* max-height: 0.5em; */
+    color: orange;
+    background: rgba(0,0,0,0.2);
+    /* align-items: center; */
+    /* padding-right: 0.3rem; */
+    /* border: 1px solid red; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: .2em;
+    cursor: pointer;
+    
+}
+
+.SongDisplay__Item__PlayListAdd:hover {
+    color: rgb(255, 238, 0);
+    transition: 0.3s ease;
+}
+
+.SongDisplay__Item__PlayListAdd > * {
+    font-size: 1.4em;
+    margin-top: .1em;
+    /* align-content: center; */
+}
+
+
+.SongDisplay__Item__Round {
+    min-width: 2em;
+    font-weight: bold;
+    margin-right: 0.3rem;
+    /* border-right: 1px solid #ccc; */
+    /* background: rgba(0,0,0, 0.2); */
+}
+
+.SongDisplay__Item__Name {
+    min-width: 40%;
+    max-width: 40%;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
+    /* overflow-x: scroll; */
+    
+}
+
+.SongDisplay__Item__TrackVotes {
+    min-width: 1em;
+    /* background: rgba(0,0,0, 0.2); */
+    /* border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc; */
+    /* align-self: c; */
+    text-align: center;
+}
+
+.SongDisplay__Item__Musician {
+    padding-left: .3rem;
+    /* padding-right: .44rem; */
+    width: 15%;
+    overflow-x: hidden;
+   
+}
+
+.SongDisplay__Item__Lyricist {
+    padding-left: .3rem;
+    /* padding-right: .44rem; */
+    width: 15%;
+    overflow-x: hidden;
+    
+}
+
+.SongDisplay__Item__Vocals {
+    padding-left: .3rem;
+    /* padding-right: .44rem; */
+    width: 15%;
+    overflow-x: hidden;
+    
+}
+
+.SongDisplay__Item__TrackVotes {
+    min-width: 1em;
+    /* background: rgba(0,0,0, 0.2); */
+    /* border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc; */
+    /* align-self: c; */
+    text-align: center;
+}
+
+.SongDisplay__Item__MusicVotes {
+    min-width: 1em;
+    text-align: center;
+
+}
+
+.SongDisplay__Item__LyricVotes {
+    min-width: 1em;
+    text-align: center;
+}
+
+.SongDisplay__Item__VocalVotes {
+    min-width: 1em;
+    text-align: center;
+
+}
+
+.SongDisplay__Item__TrackWin {
+    color: rgb(180, 68, 255);
+    user-select: none;
+    min-width: 0.8em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    
+}
+
+.SongDisplay__Item__TrackWin > * {
+    min-width: 0.8em;
+    font-size: 0.8em;
+}
+.SongDisplay__Item__MusicWin {
+    color: orange;
+    user-select: none;
+}
+.SongDisplay__Item__LyricskWin {
+    color: orange;
+    user-select: none;
+}
+.SongDisplay__Item__VocalsWin {
+    color: orange;
+    user-select: none;
+}

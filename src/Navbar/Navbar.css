@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+}
+
+.Navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.85);
+    min-height: 5em;
+    max-height: 5em;
+    display: flex;
+    flex-flow: row nowrap;
+    border-bottom: 3px solid rgba(128,0,128, 0.5);
+    
+
+
+
+    /* border: 5px solid red; */
+
+}
+
+.Navbar__Flexbox__Left {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 5em;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: flex-start;
+    /* align-content: center; */
+    /* align-content: center; */
+
+}
+
+
+.Navbar__Flexbox__Left__Brand {
+    max-height: 5em;
+    margin-left: 2em;
+
+}
+.Navbar__Flexbox__Left__Brand__img {
+    max-height: 5em;
+    /* height: 3em; */
+}
+
+.Navbar__Flexbox__Left__Item {
+    /* max-height: 100%; */
+    margin: 0 1em;
+    font-size: 1.1em;
+    /* font-weight: 700; */
+}
+
+.Navbar__Flexbox__Left__Item > a {
+    color: lightblue;
+    text-decoration: none;
+}
+
+.Navbar__Flexbox__Right {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 5em;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: center;
+}
+
+.Navbar__Flexbox__Right__Item {
+
+    margin: 0 0.3em;
+    font-size: 1.1em;
+    
+    
+
+}
+
+.Navbar__Flexbox__Right__Item__Button {
+    background: #7c61f7;
+    border-radius: 0.2em;
+    display: block;
+    padding: 0.4em 0.5em;
+    text-decoration: none;
+    color: white;
+}

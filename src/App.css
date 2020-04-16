@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.App {
+  /* text-align: center; */
+ 
+}
+
+body {
+  background: url('./img/blurryphones.jpg');
+  background-position: -600px 00;
+  background-size: auto 100%;
+  background-attachment: fixed;
+  color: #f1f1f1;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1f1f1f; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
