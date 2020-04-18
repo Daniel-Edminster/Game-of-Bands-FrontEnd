@@ -34,7 +34,6 @@ function getUser(token) {
 	});
 	// return rm;
 
-	
 
 }
 // Ask the user to authorize.

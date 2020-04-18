@@ -6,13 +6,58 @@ class Navbar extends Component {
     constructor(){
         super();
 
-        if(this.props) {
-            let leftLinks = this.props.leftLinks;
-            let rightLinks = this.props.rightLinks;
+        // if(this.props) {
+        //     let leftLinks = this.props.leftLinks;
+        //     let rightLinks = this.props.rightLinks;
+        // }
+
+        this.state = {
+            auth: false
+        };
+
+        let userLinkArray = '';
+        let sessionVars = '';
+        let checkNum = 0;
+
+    }
+
+
+    
+    sessionCheck = () => {
+
+        console.log(document.cookie);
+        let url = "http://127.0.0.1:4000/sessioncheck";
+            fetch(url, { 
+                credentials: "include", 
+            // method: 'post' 
+        })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    // if(!(res.auth === false)) {
+                    //     this.setState( { auth: true });
+                    //     this.sessionVars = res;
+                    //     // console.log(this.sessionVars);
+                    // }
+                    // checkNum++;
+
+                });
+            
+    }
+
+    getUserLinks = () => {
+        let JSX;
+        if(this.state.auth === true)
+        {
+            
+        } else {
+
         }
     }
+
     render() {
         return (
+
             <div className="Navbar">
                 <div className="Navbar__Flexbox__Left">
                     <div className="Navbar__Flexbox__Left__Brand">
@@ -28,17 +73,19 @@ class Navbar extends Component {
                     </div>
 
                     <div className="Navbar__Flexbox__Left__Item">
-                    <a href="#">/r/gameofbands</a>
+                    <a href="https://reddit.com/r/gameofbands" target="_blank">/r/gameofbands</a>
                     </div>
 
                     <div className="Navbar__Flexbox__Left__Item">
-                    <a href="#">Discord</a>
+                    <a href="https://discordapp.com/invite/h7ywF3">Discord</a>
                     </div>
         
                 </div>
 
                 <div className="Navbar__Flexbox__Right">
-                <div className="Navbar__Flexbox__Right__Item">
+                {this.sessionCheck()}
+
+                {/* <div className="Navbar__Flexbox__Right__Item">
                         Username
                     </div>
                 <div className="Navbar__Flexbox__Right__Item">
@@ -52,8 +99,11 @@ class Navbar extends Component {
                     </div>
                     <div className="Navbar__Flexbox__Right__Item">
                         Logout
-                    </div>
+                    </div> */}
 
+                    <div className="Navbar__Flexbox__Right__Item">
+                        <a href="http://localhost:4000/auth/reddit" className="Navbar__Flexbox__Right__Item__Button">Login</a>
+                    </div>
 
                 </div>
                 

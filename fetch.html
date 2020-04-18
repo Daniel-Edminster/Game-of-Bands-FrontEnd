@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+    <script>
+        let url = 'http://localhost:4000/sessioncheck';
+        fetch(url)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+            })
+
+    </script>
+</body>
+</html>
