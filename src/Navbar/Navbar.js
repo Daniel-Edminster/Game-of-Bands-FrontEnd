@@ -44,8 +44,12 @@ class Navbar extends Component {
         .then(res => res.json())
         .then(res => {
             console.log("Fetch Response: ", res);
+
+            // https://www.reddit.com/api/v1/access_token
+
+            // if("tokens" in res)
             
-            if(res.hasOwnProperty('key') && this.state.auth === false) {
+            if("key" in res && this.state.auth === false) {
                 this.setState({
                     auth: true,
                     username: res.key,
@@ -55,17 +59,19 @@ class Navbar extends Component {
                     expirySeconds: res.tokens.expires_in
                 });
                 this.getUserLinks(true);
+                // console.log('true');
                 // console.log('getuserlinks true');
                 // console.log("state: ", this.state);
             }
             else {
                 this.getUserLinks(false);
+                // console.log('false');
             }
 
         });
 
-    
-    
+        
+
     }
 
 
@@ -149,7 +155,7 @@ class Navbar extends Component {
                     </div>
 
                     <div className="Navbar__Flexbox__Left__Item">
-                    <a href="#">Songs</a>
+                    <Link to="/">Songs</Link>
                     </div>
 
                     <div className="Navbar__Flexbox__Left__Item">

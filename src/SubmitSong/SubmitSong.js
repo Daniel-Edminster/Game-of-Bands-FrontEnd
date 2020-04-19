@@ -29,7 +29,8 @@ class SubmitSong extends Component {
                 lyrics: '',
                 vocals: '',
                 lyricsheet: ''
-            }
+            },
+            auth: false
 
         }
 
@@ -37,7 +38,49 @@ class SubmitSong extends Component {
     }
 
     componentDidMount() {
-        this.content = 'You must be logged in to do that.';
+        this.sessionCheck();
+        // this.content = 'You must be logged in to do that.';
+    }
+
+    sessionCheck = () => {
+        // let ls = window.localStorage;
+
+
+        let url = "http://127.0.0.1:4000/sessioncheck";
+        fetch(url, { 
+                credentials: "include", 
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log("Fetch Response: ", res);
+
+            // https://www.reddit.com/api/v1/access_token
+
+            // if("tokens" in res)
+            
+            if("key" in res && this.state.auth === false) {
+                this.setState({
+                    auth: true,
+                    username: res.key,
+                    access_token: res.tokens.access_token,
+                    refresh_token: res.tokens.refresh_token,
+                    expiry: res.tokens.expires_at,
+                    expirySeconds: res.tokens.expires_in
+                });
+                // this.getUserLinks(true);
+                // console.log('true ss');
+                // console.log('getuserlinks true');
+                // console.log("state: ", this.state);
+                this.setState({ auth: true} );
+            }
+            else {
+                // this.getUserLinks(false);
+                // console.log('false ss');
+            }
+
+        });
+ 
+
     }
 
     validURL = (str) => {
@@ -185,33 +228,47 @@ class SubmitSong extends Component {
         let formValues = {};
         for(const [key, value] of Object.entries(this.state.formPlaceholders)) placeholders[key] = value;
         for(const [key, value] of Object.entries(this.state.formValues)) formValues[key] = value;
+        
+        if(this.state.auth === true) {
+            return (
+                <div className="SubmitSong">
 
-        return (
+
+                    {this.state.submitted === false ? '': this.renderFormResponse()}
+                    <form action="/submit" method="POST">
+                        <h2>Submit a new song</h2>
+                        <div className="SubmitSong__Formbox">
+                        <TextInput label="Song Name" placeholder={placeholders.name} name="name" value={formValues.name} propfunction={this.handleFormUpdate} />
+                        <TextInput label="Song URL" type="url" placeholder={placeholders.url} name="url" value={formValues.url} propfunction={this.handleFormUpdate}/>
+                        <TextInput label="Musician" placeholder={placeholders.music} name="music" value={formValues.music} propfunction={this.handleFormUpdate}/>
+                        <TextInput label="Lyricist" placeholder={placeholders.lyrics} name="lyrics" value={formValues.lyrics} propfunction={this.handleFormUpdate}/>
+                        <TextInput label="Vocalist" placeholder={placeholders.vocals} name="vocals" value={formValues.vocals} propfunction={this.handleFormUpdate}/>
+                        <TextInput label="Lyrics" type="textarea" placeholder={placeholders.lyricsheet} name="lyricsheet" value={formValues.lyricsheet} propfunction={this.handleFormUpdate}/>
+                        <div>
+                        <button className="SubmitSong__Formbox__Button" onClick={this.handleSongSubmit}>Submit</button>
+                        </div>
+                        </div>
+
+                        {/* <div>{this.state.content}</div> */}
+        
+
+
+
+                    </form>
+                
+        
+                </div>
+            );
+        } 
+        
+        else {
+            return (
             <div className="SubmitSong">
-
-                {this.state.submitted === false ? '': this.renderFormResponse()}
-                <form action="/submit" method="POST">
-                    <h2>Submit a new song</h2>
-                    <div className="SubmitSong__Formbox">
-                    <TextInput label="Song Name" placeholder={placeholders.name} name="name" value={formValues.name} propfunction={this.handleFormUpdate} />
-                    <TextInput label="Song URL" type="url" placeholder={placeholders.url} name="url" value={formValues.url} propfunction={this.handleFormUpdate}/>
-                    <TextInput label="Musician" placeholder={placeholders.music} name="music" value={formValues.music} propfunction={this.handleFormUpdate}/>
-                    <TextInput label="Lyricist" placeholder={placeholders.lyrics} name="lyrics" value={formValues.lyrics} propfunction={this.handleFormUpdate}/>
-                    <TextInput label="Vocalist" placeholder={placeholders.vocals} name="vocals" value={formValues.vocals} propfunction={this.handleFormUpdate}/>
-                    <TextInput label="Lyrics" type="textarea" placeholder={placeholders.lyricsheet} name="lyricsheet" value={formValues.lyricsheet} propfunction={this.handleFormUpdate}/>
-                    <div>
-                    <button className="SubmitSong__Formbox__Button" onClick={this.handleSongSubmit}>Submit</button>
-                    </div>
-                    </div>
-
-                    {/* <div>{this.state.content}</div> */}
-    
-
-
-
-                </form>
+                <h4>{this.state.content}</h4>
             </div>
-        );
+        )
+
+        } 
     }
 }
 

@@ -20,6 +20,12 @@
     text-align: center;
     /* color: white; */
 }
+.SubmitSong  > h4 {
+    /* display: block;
+    border: 1px solid red; */
+    text-align: center;
+    /* color: white; */
+}
 
 .SubmitSong__Formbox {
     display: flex;
