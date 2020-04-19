@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TextInput from '../TextInput/TextInput';
 import './SubmitSong.css';
+import axios from 'axios';
+import e from 'cors';
 class SubmitSong extends Component {
     constructor() {
         super();
@@ -11,40 +13,113 @@ class SubmitSong extends Component {
         this.state = {
             content: 'You must be logged in to do that.',
             submitted: false,
-            formResponse: ''
+            formResponse: '',
+            formPlaceholders: {
+                name: 'Never Gonna Give You Up',
+                url: 'https://soundcloud.com/doomgrip776/rick-astley-never-gonna-give-you-up-airhorn-remix',
+                music: 'BedroomProducer',
+                lyrics: 'DistinguishedWriter',
+                vocals: 'AntiVoxxer',
+                lyricsheet: 'I wrote you but you still ain\'t callin\''
+            },
+            formValues: {
+                name: '',
+                url: '',
+                music: '',
+                lyrics: '',
+                vocals: '',
+                lyricsheet: ''
+            }
+
         }
+
+       
     }
 
     componentDidMount() {
         this.content = 'You must be logged in to do that.';
     }
 
+    validURL = (str) => {
+        //https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(str);
+      }
+
     handleSongSubmit = (event) => {
         event.preventDefault();
-        let url = 'http://127.0.0.1:4000/create';
-        // alert(event.target.textContent);
+        // console.log(event);
 
-        fetch(url, {
-            method: 'post',
-            credentials: 'include',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }).then(res => res.json())
-        .then(res => {
-            console.log(res);
+
+        if(this.validURL(this.state.formValues.url))
+        {
+            let url = 'http://127.0.0.1:4000/create';
+            // alert(event.target.textContent);
+
+            console.log(this.state.formValues);
+
+            fetch(url, {
+                method: 'post',
+                credentials: 'include',
+                body: JSON.stringify(this.state.formValues),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+
+            }).then(res => res.json())
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    submitted: true,
+                    formResponse: res
+                })
+            })
+        }
+        else {
             this.setState({
                 submitted: true,
-                formResponse: res
+                formResponse: {
+                    errors: {
+                        url: {
+                            message: 'Invalid Song URL'
+                        }
+                    }
+                }
             })
-        })
+        }
 
-        // this.setState({
-        //     submitted: true,
-            
-        // })
+    }
 
+    handleFormUpdate = (event) => {
+        // console.log(event.target.name);
+        let {name, value} = event.target;
+        let hFUformValues = {};
+        // console.log(value);
 
+        for(const [k, v] of Object.entries(this.state.formValues)) { 
+            // currentFormValues[k] = v;
+            if(k === name) {
+                hFUformValues[k] = value;
+            }
+            else {
+                hFUformValues[k] = v;
+            }
+        }
+
+        this.setState({
+            formValues: hFUformValues
+        }, this.logState);
+
+    }
+
+    logState = () => {
+        // console.log(this.state.formValues);
     }
 
     hideSubmittedInfo = () => {
@@ -52,19 +127,13 @@ class SubmitSong extends Component {
     }
 
     renderFormResponse = () => {
-        if(this.state.formResponse.errors !== '') {
+        let errkey = "errors";
+        if((errkey in this.state.formResponse)) {
             // let errs = this.state.formResponse.errors
             let errs = [];
 
-            // for(const err in this.state.formResponse.errors) {
-            //     console.log(err);
-            //     errs.push (err);
-            // }
-            // this.state.formResponse.errors.forEach(item => {
-            //     errs.push(item.message);
-            // })
 
-            console.log(typeof this.state.formResponse.errors)
+            // console.log(typeof this.state.formResponse.errors)
             Object.keys(this.state.formResponse.errors).forEach(key => {
                 errs.push(this.state.formResponse.errors[key].message);
             })
@@ -87,11 +156,36 @@ class SubmitSong extends Component {
             )
         }
         else {
+
+
+            let { name, music, lyrics, vocals} = this.state.formResponse;
+            let successResponse = `Song: "${name}" successfully submitted for ${music}, ${lyrics}, and ${vocals}.`;
+            return ( 
+            
+          <div className="SubmitSong__SubmitSuccess" >
+              <div className="SubmitSong__SubmitSuccess__Message">
+                  { successResponse }
+            </div>
+
+            <div className="SubmitSong__SubmitInfo__exit" onClick={this.hideSubmittedInfo}><a aria-label="Close Account Info Modal Box">&times;</a></div>
+
+        </div>
+
+            );
+
             // return <div className="SubmitSong__SubmitInfo" onClick={this.hideSubmittedInfo}>This is my JSX form response</div>
         }
     }
 
     render() {
+
+
+
+        let placeholders = {};
+        let formValues = {};
+        for(const [key, value] of Object.entries(this.state.formPlaceholders)) placeholders[key] = value;
+        for(const [key, value] of Object.entries(this.state.formValues)) formValues[key] = value;
+
         return (
             <div className="SubmitSong">
 
@@ -99,12 +193,12 @@ class SubmitSong extends Component {
                 <form action="/submit" method="POST">
                     <h2>Submit a new song</h2>
                     <div className="SubmitSong__Formbox">
-                    <TextInput label="Song Name" placeholder="Never Gonna Give You Up" name="songName" />
-                    <TextInput label="Song URL" placeholder="https://soundcloud.com/mymixtape" name="songURL" />
-                    <TextInput label="Musician" placeholder="Reddit username" name="songMusician" />
-                    <TextInput label="Lyricist" placeholder="Reddit username" name="songLyricist" />
-                    <TextInput label="Vocalist" placeholder="Reddit username" name="songVocalist" />
-                    <TextInput label="Lyrics" type="textarea" placeholder="Twinkle Twinkle Little Star" name="songLyricsheet" />
+                    <TextInput label="Song Name" placeholder={placeholders.name} name="name" value={formValues.name} propfunction={this.handleFormUpdate} />
+                    <TextInput label="Song URL" type="url" placeholder={placeholders.url} name="url" value={formValues.url} propfunction={this.handleFormUpdate}/>
+                    <TextInput label="Musician" placeholder={placeholders.music} name="music" value={formValues.music} propfunction={this.handleFormUpdate}/>
+                    <TextInput label="Lyricist" placeholder={placeholders.lyrics} name="lyrics" value={formValues.lyrics} propfunction={this.handleFormUpdate}/>
+                    <TextInput label="Vocalist" placeholder={placeholders.vocals} name="vocals" value={formValues.vocals} propfunction={this.handleFormUpdate}/>
+                    <TextInput label="Lyrics" type="textarea" placeholder={placeholders.lyricsheet} name="lyricsheet" value={formValues.lyricsheet} propfunction={this.handleFormUpdate}/>
                     <div>
                     <button className="SubmitSong__Formbox__Button" onClick={this.handleSongSubmit}>Submit</button>
                     </div>

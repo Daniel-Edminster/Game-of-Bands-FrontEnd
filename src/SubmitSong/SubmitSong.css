@@ -5,7 +5,7 @@
     border-left: 3px solid rgba(0,0,0,0.5);
     border-right: 3px solid rgba(0,0,0,0.5);
     border-bottom: 3px solid rgba(0,0,0,0.5);
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.5);
     /* border-radius: 1em; */
     font-size: 0.9em;
     margin: 5.5em auto 0 auto;
@@ -55,17 +55,21 @@
     width: 40em;
     color: white;
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
-    padding: 1em;
+    padding: 0 0 1em 1em;
     background: rgb(67, 158, 248);
     border-radius: 0.5em;
     margin: 0.4em auto;
     transition: 0.5s ease;
     animation-name: fadeIn;
-    animation-duration: 0.5s
+    animation-duration: 0.5s;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .SubmitSong__SubmitInfo__List {
-    float: left;
+    /* float: left; */
+    padding-top: 1em;
     /* border: 1px solid red; */
     /* padding: 0; */
     
@@ -86,13 +90,44 @@ li {
 }
 
 .SubmitSong__SubmitInfo__exit {
-    /* position: absolute; */
-    /* right: 0px; */
-    /* z-index: 999; */
-    /* top: 0px; */
+
+    line-height: 0.8em;
+    padding-right: 0.07em;
+
+    font-size: 2.5em;
+    cursor: pointer;
+    /* vertical-align: top; */
+}
+
+.SubmitSong__SubmitSuccess {
+    width: 40em;
+    color: white;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    /* padding: 1em; */
+    padding: 0 0 1em 1em;
+    background: rgb(5, 175, 5);
+    border-radius: 0.5em;
+    margin: 0.4em auto;
+    transition: 0.5s ease;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.SubmitSong__SubmitSuccess__Message {
+    /* float: left; */
     /* border: 1px solid red; */
-    float: right;
-    font-size: 2em;
+    /* padding: 0; */
+    padding-top: 1em;
+    
+}
+
+.SubmitSong__SubmitSuccess__exit {
+    line-height: 0.8em;
+    padding-right: 0.07em;
+
+    font-size: 2.5em;
     cursor: pointer;
     /* vertical-align: top; */
 }

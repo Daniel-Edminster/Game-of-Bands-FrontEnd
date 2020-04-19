@@ -13,7 +13,7 @@ label {
 input {
     /* min-width: 10em; */
     /* font-family: Arial, Helvetica, sans-serif; */
-    margin-top: 0.15em;
+    margin-top: 0.17em;
     padding-left: 1em;
     font-size: 1em;
     height: 3em;
@@ -22,6 +22,7 @@ input {
     border: 2px solid #ccc;
 }
 textarea {
+    margin-top: 0.17em;
     min-width: 40em;
     border-radius: 0.3em;
     border: 2px solid rgba(0,0,0, 0.1);
@@ -32,6 +33,12 @@ textarea {
 
     padding: 0.5em 1em;
 
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border: 2px solid rgb(238, 46, 255);
+    transition: 0.5s ease;
 }
 
 .TextInput {

@@ -13,7 +13,10 @@ const SongSchema = new Schema({
 		type: String,
 		required: [true, 'Song url is required']
 	},
-	lyricsheet: String,
+	lyricsheet: {
+		type: String,
+		required: [true, 'A Lyricsheet is required']
+	},
 	music: {
 		type: String,
 		required: [true, 'Song musician is required']

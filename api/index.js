@@ -259,6 +259,9 @@ app.get('/user/:username/vocals', (req, res) => {
 });
 
 app.post('/create', (req, res) => {
+	// res.header("Access-Control-Allow-Credentials", "true");
+	// res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
+	// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	console.log('request body:', req.body);
 
 	Song.create(req.body).then(song => {
