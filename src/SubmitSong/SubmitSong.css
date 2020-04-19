@@ -1,0 +1,103 @@
+.SubmitSong {
+    max-width: 1000px;
+    /* background: rgba(0,0,0,0.5); */
+    /* margin-top: 5em; */
+    border-left: 3px solid rgba(0,0,0,0.5);
+    border-right: 3px solid rgba(0,0,0,0.5);
+    border-bottom: 3px solid rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
+    /* border-radius: 1em; */
+    font-size: 0.9em;
+    margin: 5.5em auto 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    height: calc(100vh - 5.5em);
+}
+
+.SubmitSong > form > h2 {
+    /* display: block;
+    border: 1px solid red; */
+    text-align: center;
+    /* color: white; */
+}
+
+.SubmitSong__Formbox {
+    display: flex;
+    flex-flow: column nowrap;
+    /* justify-content: center; */
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.SubmitSong__Formbox__Button {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    margin: 0.5em 0.3em;
+    background: #7c61f7;
+    border: 2px solid #7c61f7;
+    border-radius: 0.2em;
+    display: block;
+    padding: 0.6em 2em;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+   
+}
+
+.SubmitSong__Formbox__Button:hover {
+    background: rgb(238, 46, 255);
+    border: 2px solid rgb(209, 43, 224);
+    transition: 0.1s ease;
+
+}
+
+.SubmitSong__SubmitInfo {
+    width: 40em;
+    color: white;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    padding: 1em;
+    background: rgb(67, 158, 248);
+    border-radius: 0.5em;
+    margin: 0.4em auto;
+    transition: 0.5s ease;
+    animation-name: fadeIn;
+    animation-duration: 0.5s
+}
+
+.SubmitSong__SubmitInfo__List {
+    float: left;
+    /* border: 1px solid red; */
+    /* padding: 0; */
+    
+}
+
+ul {
+    padding-left: 1.1em;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    /* pa */
+    /* margin-left: 0px; */
+}
+li {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.SubmitSong__SubmitInfo__exit {
+    /* position: absolute; */
+    /* right: 0px; */
+    /* z-index: 999; */
+    /* top: 0px; */
+    /* border: 1px solid red; */
+    float: right;
+    font-size: 2em;
+    cursor: pointer;
+    /* vertical-align: top; */
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

@@ -9,9 +9,9 @@ class Navbar extends Component {
 
 
         let userLinkArray = [{
-            name: '',
-            href: '',
-            class: ''
+            name: 'Login',
+            href: 'http://127.0.0.1:4000/auth/reddit',
+            class: 'Navbar__Flexbox__Right__Item__Button'
         }];
 
         this.state = {
@@ -123,7 +123,7 @@ class Navbar extends Component {
             // return this.userLinkJSX;
 
         }
-        console.log(this.userLinkJSX);
+        // console.log(this.userLinkJSX);
 
     }
 
@@ -165,7 +165,7 @@ class Navbar extends Component {
                 <div className="Navbar__Flexbox__Right">
          
 
-                        { console.log(this.state.linkarray) }
+                        {/* { console.log(this.state.linkarray) } */}
                         { this.renderLinkArray()}
 
                     

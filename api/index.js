@@ -264,7 +264,10 @@ app.post('/create', (req, res) => {
 	Song.create(req.body).then(song => {
 		console.log(song);
 		res.json(song);
-	});
+	})
+	.catch(err => {
+		res.json(err);
+	})
 });
 
 app.patch('/update/:id', (req, res) => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SongDisplay.css';
 import Songs from '../data/songs.json';
+import he from 'he';
 
 class SongDisplay extends Component {
     constructor(){
@@ -40,7 +41,7 @@ class SongDisplay extends Component {
                 </span></div>
               
                             <div className="SongDisplay__Item__Round">{song.round}</div>
-                            <div className="SongDisplay__Item__Name">{song.name}</div>
+                            <div className="SongDisplay__Item__Name">{he.decode(song.name)}</div>
                             <div className="SongDisplay__Item__TrackWin">
                             {trackTrophy}
         
