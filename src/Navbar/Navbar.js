@@ -21,8 +21,6 @@ class Navbar extends Component {
 
         let userLinkJSX = '';
 
-
-
     }
 
     componentDidMount(){
@@ -69,8 +67,7 @@ class Navbar extends Component {
             }
 
         });
-
-        
+ 
 
     }
 
@@ -136,7 +133,10 @@ class Navbar extends Component {
     renderLinkArray = () => {
         
         return (this.state.linkarray.map((item, i) => {
-            return <div key={i} className={item.class}><Link to={item.href}>{item.name}</Link></div>
+            if(item.name === 'Login') 
+                return <div key={i} className={item.class}><a className="Navbar__Flexbox__Right__Item__Button" href={item.href}>{item.name}</a></div>
+            else 
+                return <div key={i} className={item.class}><Link to={item.href}>{item.name}</Link></div>
             // return <div key={i} className="Navbar__Flexbox__Right__Item"><Link to={item.href}>{item.name}</Link></div>
         }));
     }

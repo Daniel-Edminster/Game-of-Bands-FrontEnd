@@ -23,8 +23,9 @@ class Admin extends Component {
                 </div>
                 {/* <Router> */}
             <Switch>
+            <Route path='/admin' component={AdminSongDisplay} />
             <Route exact path='/admin/edit/:id' render={routerProps => <SongEditor {...routerProps} {...this.state} /> }  />
-            <AdminSongDisplay />
+           
 
             </Switch>
             {/* </Router> */}

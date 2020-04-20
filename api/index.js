@@ -9,7 +9,7 @@ let redis   = require("redis");
 let session = require('express-session');
 let redisStore = require('connect-redis')(session);
 let client  = redis.createClient();
-
+require('dotenv').config();
 
 
 app.use(parser.urlencoded( { extended: true }));
@@ -45,9 +45,11 @@ app.use(session({
 	}
 }));
 
+// console.log(process.env.REDDIT_API_CLIENT, process.env.REDDIT_API_SECRET);
+// console.log(process.env);
 const reddit = simpleOAuth2Reddit.create({
-	clientId: 'gUcwwEGm_XOvyQ',
-	clientSecret: 'aJtLZjppb7WSRdncLOTIuoQie34',
+	clientId: process.env.REDDIT_API_CLIENT,
+	clientSecret: process.env.REDDIT_API_SECRET,
 	callbackURL: 'http://127.0.0.1:4000/auth/reddit/callback',
 	state: 'random-unique-string',
 	authorizeOptions: {
@@ -291,8 +293,7 @@ app.patch('/update/:id', (req, res) => {
 });
 
 app.delete('/delete/:id', (req, res) => {
-	// res.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE");
-	// req.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE", "OPTIONS");
+
 
 	console.log(req);
 	Song.findById(req.params.id, (err, songUpdate) => {
