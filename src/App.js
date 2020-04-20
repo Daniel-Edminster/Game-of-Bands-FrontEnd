@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './Navbar/Navbar';
 import SongDisplay from './SongDisplay/SongDisplay';
 import SubmitSong from './SubmitSong/SubmitSong';
+import Admin from './Admin/Admin';
 // import AudioPlayer from './AudioPlayer/AudioPlayer';
 // require('wavesurfer.js');
 
@@ -17,6 +18,7 @@ function App() {
       <Switch>
         <Route exact path="/"  component={SongDisplay}/>
         <Route exact path="/submitsong"  component={SubmitSong}/>
+        <Route exact path="/admin"  component={Admin}/>
       {/* <SongDisplay /> */}
       </Switch>
       </Router>

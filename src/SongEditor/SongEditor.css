@@ -1,0 +1,5 @@
+.SongEditor {
+    height: calc(100vh - 5.5em);
+    background: red;
+    min-width: 1000px;
+}

@@ -19,9 +19,12 @@ app.use(parser.json());
 app.use(function(req, res, next) {
 	// res.header("preflightContinue", "true");
 	// res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+	// res.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE");
+	res.header("Access-Control-Allow-Methods", "POST,GET,PUT, DELETE");
 	res.header("Access-Control-Allow-Credentials", "true");
 	res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
 	next();
   });
 
@@ -288,6 +291,10 @@ app.patch('/update/:id', (req, res) => {
 });
 
 app.delete('/delete/:id', (req, res) => {
+	// res.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE");
+	// req.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE", "OPTIONS");
+
+	console.log(req);
 	Song.findById(req.params.id, (err, songUpdate) => {
 
 		if(err) {

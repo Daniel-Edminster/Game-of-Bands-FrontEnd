@@ -9,6 +9,9 @@
     margin: 5.5em auto 0 auto;
     display: flex;
     flex-flow: column nowrap;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    /* transition: 0.5s ease; */
 }
 .SongDisplay__Item:nth-child(odd) {
     background: rgba(0,0,0,0.15);
@@ -198,4 +201,10 @@
 .SongDisplay__Item__VocalsWin {
     color: orange;
     user-select: none;
+}
+
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

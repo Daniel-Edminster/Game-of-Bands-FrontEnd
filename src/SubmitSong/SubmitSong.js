@@ -193,7 +193,7 @@ class SubmitSong extends Component {
                     </ul>
                     </div>
 
-                    <div className="SubmitSong__SubmitInfo__exit" onClick={this.hideSubmittedInfo}><a aria-label="Close Account Info Modal Box">&times;</a></div>
+                    <div className="SubmitSong__SubmitInfo__exit" onClick={this.hideSubmittedInfo}><a aria-label="Close Error Notification Box">&times;</a></div>
 
                 </div>
             )
@@ -210,7 +210,7 @@ class SubmitSong extends Component {
                   { successResponse }
             </div>
 
-            <div className="SubmitSong__SubmitInfo__exit" onClick={this.hideSubmittedInfo}><a aria-label="Close Account Info Modal Box">&times;</a></div>
+            <div className="SubmitSong__SubmitInfo__exit" onClick={this.hideSubmittedInfo}><a aria-label="Close Success Notification Box">&times;</a></div>
 
         </div>
 
