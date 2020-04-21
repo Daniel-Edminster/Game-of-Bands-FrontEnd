@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Redirect} from 'react-router-dom';
 import Logo from '../img/GOBLogo-Clean.png';
 import './Navbar.css';
 
@@ -113,7 +113,7 @@ class Navbar extends Component {
             this.userLinkArray = [
             { 
                 name: 'Login',
-                href: '/auth/reddit',
+                href: 'http://127.0.0.1:4000/auth/reddit',
                 class: 'Navbar__Flexbox__Right__Item__Button'
             }];
 
@@ -130,11 +130,26 @@ class Navbar extends Component {
 
     }
 
+    logoutOverride = (event) => {
+        event.preventDefault();
+        this.delete_cookie("__gameofbandsdev");
+        this.sessionCheck();
+        this.setState({ auth: false });
+        window.location="/";
+    
+
+    }
+    
+    delete_cookie = (name) => {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      }
     renderLinkArray = () => {
         
         return (this.state.linkarray.map((item, i) => {
             if(item.name === 'Login') 
-                return <div key={i} className={item.class}><a className="Navbar__Flexbox__Right__Item__Button" href={item.href}>{item.name}</a></div>
+                return <div key={i} className={item.class}><a href={item.href}>{item.name}</a></div>
+            else if(item.name === 'Logout') 
+                return <div key={i} className={item.class}><a href={item.href} onClick={this.logoutOverride}>{item.name}</a></div>
             else 
                 return <div key={i} className={item.class}><Link to={item.href}>{item.name}</Link></div>
             // return <div key={i} className="Navbar__Flexbox__Right__Item"><Link to={item.href}>{item.name}</Link></div>

@@ -17,13 +17,12 @@ app.use(parser.json());
 
 
 app.use(function(req, res, next) {
-	// res.header("preflightContinue", "true");
-	// res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-	// res.header("Access-Control-Allow-Methods", "POST", "GET", "PUT", "DELETE");
-	res.header("Access-Control-Allow-Methods", "POST,GET,PUT, DELETE");
+
+	res.header("Access-Control-Allow-Methods", "POST,GET,PATCH,PUT,DELETE");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	res.header("Access-Control-Allow-Credentials", "true");
 	res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
 
 	next();
   });
@@ -48,8 +47,8 @@ app.use(session({
 // console.log(process.env.REDDIT_API_CLIENT, process.env.REDDIT_API_SECRET);
 // console.log(process.env);
 const reddit = simpleOAuth2Reddit.create({
-	clientId: process.env.REDDIT_API_CLIENT,
-	clientSecret: process.env.REDDIT_API_SECRET,
+	clientId: process.env.REDDIT_API_CLIENT, //process.env.REDDIT_API_CLIENT
+	clientSecret: process.env.REDDIT_API_SECRET, //process.env.REDDIT_API_SECRET, //z1BZIEIUJfDV80_PfJ8Xd8LpH_8
 	callbackURL: 'http://127.0.0.1:4000/auth/reddit/callback',
 	state: 'random-unique-string',
 	authorizeOptions: {
@@ -279,10 +278,17 @@ app.post('/create', (req, res) => {
 });
 
 app.patch('/update/:id', (req, res) => {
+	// res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
+	// res.header("Access-Control-Allow-Methods", "POST,GET,PATCH,DELETE");
+	// res.header("Access-Control-Allow-Credentials", "true");
+	// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	
 	Song.findById(req.params.id, (err, songUpdate) => {
 
+		
 		//_id needs to be immutable, make sure it doesn't get updated
 		if(req.body._id) delete req.body._id;
+
 			
 		for(let param in req.body) songUpdate[param] = req.body[param];
 

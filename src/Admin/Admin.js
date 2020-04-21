@@ -21,14 +21,14 @@ class Admin extends Component {
                 <div className="AdminMenuBar__Link">Song List View</div>
                 <div className="AdminMenuBar__Link">Round List View</div>
                 </div>
-                {/* <Router> */}
+
             <Switch>
             <Route path='/admin' component={AdminSongDisplay} />
             <Route exact path='/admin/edit/:id' render={routerProps => <SongEditor {...routerProps} {...this.state} /> }  />
            
 
             </Switch>
-            {/* </Router> */}
+
             </div>
         );
     }

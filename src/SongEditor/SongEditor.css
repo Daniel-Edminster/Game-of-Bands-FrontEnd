@@ -1,5 +1,95 @@
 .SongEditor {
     height: calc(100vh - 5.5em);
-    background: red;
+    /* background: red; */
     min-width: 1000px;
+    padding-left: 1em;
+}
+
+.SongEditor > form > * > label {
+    color: white;
+}
+.SongEditor >  form  > * > * > label {
+    color: white;
+}
+
+.SongEditor > * > * > * > input {
+    /* max-width: 2em !important; */
+    /* color: red; */
+    /* max-width: 30px !important; */
+    /* font-size: 0.7em; */
+    /* display: inline-block; */
+    /* border: 1px solid red; */
+}
+
+.SongEditor__Votesbox {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 40em;
+    /* border: 1px solid red; */
+    justify-content: space-between;
+    /* align-content: center; */
+    /* align-items: center; */
+    /* align-self: center; */
+}
+
+.SongEditor > form > div > div  {
+    max-width: 8em;
+    text-align: center;
+}
+
+.SongEditor > form > div > div > div > input {
+    min-width: 6em;
+    max-width: 6em;
+    text-align: center;
+    /* margin: 0 0 */
+     padding-left: 0;
+    /* color: red; */
+}
+
+.SongEditor > form > div > div >  textarea {
+    max-width: 40em;
+}
+
+.SongEditor > h3 {
+    color: #f1f1f1;
+}
+
+.SongEditor__Button {
+    /* text-align: right; */
+    /* float: right; */
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    margin: 1.5em auto;
+    background: #7c61f7;
+    border: 2px solid #7c61f7;
+    border-radius: 0.2em;
+    display: block;
+    padding: 0.6em 2em;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.SongEditor__Button:hover {
+    background: rgb(238, 46, 255);
+    border: 2px solid rgb(209, 43, 224);
+    transition: 0.1s ease;
+
+}
+
+.SongEditor__Submit {
+    /* border: 1px solid red; */
+    width: 40em;
+    /* text-align: center; */
+
+}
+
+.SubmitSong__SubmitSuccess {
+    margin: 0.5em 0 0 0;
+    padding-left: 1em;
+}
+
+.SubmitSong__SubmitInfo {
+    margin: 0.5em 0 0 0;
+    padding-left: 1em;
 }
