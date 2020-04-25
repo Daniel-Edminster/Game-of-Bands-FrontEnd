@@ -31,7 +31,7 @@ class App extends Component {
 
   sessionCheck = () => {
 
-    let url = "http://127.0.0.1:4000/sessioncheck";
+    let url = "http://192.241.147.186:8080/sessioncheck";
     fetch(url, { 
             credentials: "include", 
     })
