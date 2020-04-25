@@ -78,7 +78,7 @@ class App extends Component {
             <div className="AdminContainer">
                     <div className="AdminMenuBar">
                       <div className="AdminMenuBar__Header"> Moderator Functions</div>
-                    <div className="AdminMenuBar__Link">Song List View</div>
+                    <div className="AdminMenuBar__Link"><Link to="/admin">Song List View</Link></div>
                     <div className="AdminMenuBar__Link">Round List View</div>
                     </div>
               <Switch>

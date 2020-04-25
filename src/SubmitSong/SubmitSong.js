@@ -54,9 +54,7 @@ class SubmitSong extends Component {
         .then(res => {
             console.log("Fetch Response: ", res);
 
-            // https://www.reddit.com/api/v1/access_token
 
-            // if("tokens" in res)
             
             if("key" in res && this.state.auth === false) {
                 this.setState({
@@ -67,20 +65,14 @@ class SubmitSong extends Component {
                     expiry: res.tokens.expires_at,
                     expirySeconds: res.tokens.expires_in
                 });
-                // this.getUserLinks(true);
-                // console.log('true ss');
-                // console.log('getuserlinks true');
-                // console.log("state: ", this.state);
+
                 this.setState({ auth: true} );
             }
             else {
-                // this.getUserLinks(false);
-                // console.log('false ss');
+
             }
 
         });
- 
-
     }
 
     validURL = (str) => {
@@ -162,7 +154,7 @@ class SubmitSong extends Component {
     }
 
     logState = () => {
-        // console.log(this.state.formValues);
+        console.log(this.state.formValues);
     }
 
     hideSubmittedInfo = () => {

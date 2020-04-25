@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './SongEditor.css';
 import '../SubmitSong/SubmitSong.css';
+import './SongEditor.css';
 import TextInput from '../TextInput/TextInput';
 import he from 'he';
 

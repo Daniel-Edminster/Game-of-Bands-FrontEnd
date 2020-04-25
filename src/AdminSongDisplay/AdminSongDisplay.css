@@ -24,6 +24,7 @@
     border-bottom: 1px solid rgba(255,255,255, 0.4);
     /* animation-name: fadeInDown; 
     animation-duration: 1.0s; */
+    /* transition: 0.3s ease; */
 }
 
 .AdminSongDisplay__Titlebar__Round {
@@ -328,3 +329,113 @@
        transform: translateX(+100%);
     }
  } 
+
+ @media screen and (max-width: 1550px) {
+    .AdminSongDisplay__Titlebar__Vote {
+        display: none;
+    }
+    .AdminSongDisplay__Item__Vote {
+        display: none;
+    }
+ }
+
+ @media screen and (max-width: 1300px)
+ {
+    .AdminSongDisplay__Titlebar__Name {
+        max-width: 20%;
+        min-width: 20%;
+    }
+    .AdminSongDisplay__Item__Name {
+        max-width: 20%;
+        min-width: 20%;
+    }
+    .AdminSongDisplay__Titlebar__Musician {
+        min-width: 10em;
+        max-width: 10em;
+    }
+    .AdminSongDisplay__Item__Musician {
+        min-width: 10em;
+        max-width: 10em;
+    }
+    .AdminSongDisplay__Titlebar__Lyricist {
+        min-width: 10em;
+        max-width: 10em;
+    }
+    .AdminSongDisplay__Item__Lyricist {
+        min-width: 10em;
+        max-width: 10em;
+    }
+    .AdminSongDisplay__Titlebar__Vocalist {
+        min-width: 10em;
+        max-width: 10em;
+    }
+    .AdminSongDisplay__Item__Vocalist {
+        min-width: 10em;
+        max-width: 10em;
+    }
+
+ }
+
+ @media screen and (max-width: 1000px) {
+    .Navbar__Flexbox__Left__Item {
+        display: none;
+    }
+ }
+ @media screen and (max-width: 900px)
+ {
+    .AdminSongDisplay__Titlebar__Name {
+        /* display: none; */
+        min-width: 85%;
+    }
+    .AdminSongDisplay__Item__Name {
+        /* display: none; */
+        min-width: 85%;
+    }
+
+    .AdminSongDisplay__Titlebar__Musician {
+        display: none;
+    }
+    .AdminSongDisplay__Item__Musician {
+        display: none;
+    }
+    .AdminSongDisplay__Titlebar__Lyricist {
+        display: none;
+    }
+    .AdminSongDisplay__Item__Lyricist {
+        display: none;
+    }
+    .AdminSongDisplay__Titlebar__Vocalist {
+        display: none;
+    }
+    .AdminSongDisplay__Item__Vocalist {
+        display: none;
+    }
+    .AdminMenuBar {
+        display: none;
+    }
+    .AdminSongDisplayContainer {
+        width: 100vw;
+    }
+    .AdminSongDisplay__Titlebar__Delete {
+        min-width: 3em;
+    }
+    .AdminSongDisplay__Item__Delete {
+        min-width: 3em;
+    }
+
+    .Navbar__Flexbox__Left__Item {
+        display: none;
+    }
+
+ }
+
+ @media screen and (max-width: 550px)
+ {
+    .AdminSongDisplay__Titlebar__Delete {
+        min-width: 2em;
+    }
+    .AdminSongDisplay__Item__Delete {
+        min-width: 2em;
+    }
+
+ }

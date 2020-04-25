@@ -111,4 +111,9 @@ body {
   margin-top: 5.5em;
 }
 
+.AdminMenuBar__Link > a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /*******************************/
