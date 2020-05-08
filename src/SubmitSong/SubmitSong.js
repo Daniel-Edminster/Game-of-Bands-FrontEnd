@@ -46,7 +46,7 @@ class SubmitSong extends Component {
         // let ls = window.localStorage;
 
 
-        let url = "http://127.0.0.1:4000/sessioncheck";
+        let url = "https://danieledminster.com:8080/sessioncheck";
         fetch(url, { 
                 credentials: "include", 
         })

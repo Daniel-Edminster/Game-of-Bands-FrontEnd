@@ -18,7 +18,7 @@ class AdminSongDisplay extends Component {
     }
 
     componentDidMount() {
-        let url = 'http://127.0.0.1:4000/all/desc';
+        let url = 'https://danieledminster.com:8080/all/desc';
         fetch(url)
         .then(res => res.json())
         .then(res => {
@@ -34,7 +34,7 @@ class AdminSongDisplay extends Component {
         let songID = event.target.getAttribute("data-id");
 
         if(window.confirm("Are you sure you want to delete this song?")) {
-            let url = `http://127.0.0.1:4000/delete/${songID}`;
+            let url = `https://danieledminster.com:8080/delete/${songID}`;
             fetch(url, { 
                 method: 'DELETE',
                 credentials: 'include'

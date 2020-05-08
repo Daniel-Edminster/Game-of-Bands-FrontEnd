@@ -10,7 +10,7 @@ class Navbar extends Component {
 
         let userLinkArray = [{
             name: 'Login',
-            href: 'http://127.0.0.1:4000/auth/reddit',
+            href: 'https://danieledminster.com:8080/auth/reddit',
             class: 'Navbar__Flexbox__Right__Item__Button'
         }];
 
@@ -35,7 +35,7 @@ class Navbar extends Component {
         // let ls = window.localStorage;
 
 
-        let url = "http://127.0.0.1:4000/sessioncheck";
+        let url = "https://danieledminster.com:8080/sessioncheck";
         fetch(url, { 
                 credentials: "include", 
         })
@@ -113,7 +113,7 @@ class Navbar extends Component {
             this.userLinkArray = [
             { 
                 name: 'Login',
-                href: 'http://127.0.0.1:4000/auth/reddit',
+                href: 'https://danieledminster.com:8080/auth/reddit',
                 class: 'Navbar__Flexbox__Right__Item__Button'
             }];
 
