@@ -44,7 +44,7 @@ class SongEditor extends Component {
 
     sessionCheck = () => {
 
-        let url = "http://danieledminster.com:8080/sessioncheck";
+        let url = "https://danieledminster.com:8080/sessioncheck";
         fetch(url, { 
                 credentials: "include", 
         })
