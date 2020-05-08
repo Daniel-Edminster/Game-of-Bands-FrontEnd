@@ -94,7 +94,7 @@ class SubmitSong extends Component {
 
         if(this.validURL(this.state.formValues.url))
         {
-            let url = 'http://127.0.0.1:4000/create';
+            let url = 'https://gameofbands.danieledminster.com/create';
             // alert(event.target.textContent);
 
             console.log(this.state.formValues);

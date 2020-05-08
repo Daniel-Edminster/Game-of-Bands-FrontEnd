@@ -44,7 +44,7 @@ class SongEditor extends Component {
 
     sessionCheck = () => {
 
-        let url = "http://127.0.0.1:4000/sessioncheck";
+        let url = "http://danieledminster.com:8080/sessioncheck";
         fetch(url, { 
                 credentials: "include", 
         })
@@ -80,7 +80,7 @@ class SongEditor extends Component {
 
         if(this.validURL(this.state.formValues.url))
         {
-            let baseURL = 'http://127.0.0.1:4000/update/';
+            let baseURL = 'https://danieledminster.com:8080/update/';
             let id = this.props.match.params.id;
             let fullURL = baseURL+id;
             // alert(event.target.textContent);
@@ -137,7 +137,7 @@ class SongEditor extends Component {
 
     getSongByID = () => {
         let id = this.props.match.params.id;
-        let baseURL = "http://127.0.0.1:4000/song/id/";
+        let baseURL = "https://danieledminster.com:8080/song/id/";
         let fullURL = baseURL+id;
 
         fetch(fullURL, {
