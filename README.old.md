@@ -1,20 +1,23 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Game of Bands React Front-End
+A React.js based front-end for the GameofBands song database and Express API
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+```
+git clone https://github.com/Daniel-Edminster/Game-of-Bands-FrontEnd.git
+```
+After you've finished setting up the API, you'll have to go through the components and change the API calls to match the URL of your Express server. Sorry I didn't make that process easy, I ran out of time. Once you've done that, to build:
+```
+npm run build
+```
+or in a dev environment,
+```
+npm run start
+```
+You'll need to login with a reddit account to do anything besides read from the 1500 or so entries here. Once you do, you'll see an `/admin` link in the navbar. From there, you can click the 'X' on a song to delete it, or click the song title to edit some of its database values directly. To create a song, click the `Submit Song` button in the navbar. This has full validation, so worry not about submitting garbage to the database. New songs show up at the very bottom of the song list, this is a byproduct of migrating from sql to mongodb and changing from an integer-based ID to mongoDB's base16 `ObjectID` and not having time to make a mapping function for all that. 
+
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+- Source: https://github.com/daniel-edminster/Game-of-Bands-FrontEnd
+- Issue Tracker: https://github.com/daniel-edminster/Game-of-Bands-FrontEnd/issues
