@@ -3,6 +3,7 @@ import he from 'he';
 import './AdminSongDisplay.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import SongEditor from '../SongEditor/SongEditor';
+import ReactLoading from 'react-loading';
 
 class AdminSongDisplay extends Component {
     constructor(){
@@ -125,7 +126,11 @@ class AdminSongDisplay extends Component {
                             <div className="AdminSongDisplay__Item__Vote">{item.vocalsvote}</div>
                             <div className="AdminSongDisplay__Item__Delete"><a aria-label="Close Success Notification Box" data-id={item._id} onClick={this.deleteSong}>X</a></div>
                         </div> )
-                }) : ''
+                }) :                 
+                
+                <div className="MyLoader">
+                <ReactLoading type="spin" color="#7c61f7" height={'5%'} width={'5%'} /> 
+                </div>
             }
                 
             </div>

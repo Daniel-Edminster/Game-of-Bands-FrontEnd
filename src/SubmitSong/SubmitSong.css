@@ -71,6 +71,8 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    /* border: 1px solid red; */
+    align-self: center;
 }
 
 .SubmitSong__SubmitInfo__List {
@@ -120,6 +122,7 @@ li {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    align-self: center;
 }
 .SubmitSong__SubmitSuccess__Message {
     /* float: left; */
@@ -129,6 +132,26 @@ li {
     
 }
 
+.UploadProgress {
+    width: 40em;
+    /* margin: 8em auto 0 auto; */
+    background: #7c61f7;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    /* z-index: 4;
+    top: 33vh;
+    position: absolute; */
+
+    margin: 0 auto;
+
+    /* left: 13em; */
+    /* margin-left: -50px; */
+    /* top: 50%; */
+    /* margin-top: -50px; */
+    /* margin: 0 auto; */
+    /* left: calc(21em); */
+}
+
 .SubmitSong__SubmitSuccess__exit {
     line-height: 0.8em;
     padding-right: 0.07em;
@@ -136,6 +159,15 @@ li {
     font-size: 2.5em;
     cursor: pointer;
     /* vertical-align: top; */
+}
+
+.veil {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    /* background: rgba(0,0,0,0.1); */
 }
 
 @keyframes fadeIn {

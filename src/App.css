@@ -13,7 +13,11 @@ body {
   background-attachment: fixed;
   color: #f1f1f1;
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
+
+  /* background-color: black; */
+
 }
+
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -114,6 +118,13 @@ body {
 .AdminMenuBar__Link > a {
   text-decoration: none;
   color: inherit;
+}
+
+.rc-slider-track {
+    background: linear-gradient(to right, #ff3019 ,#cf0404);
+}
+.rc-slider-handle {
+  background-color: #8e0000 !important ;
 }
 
 /*******************************/

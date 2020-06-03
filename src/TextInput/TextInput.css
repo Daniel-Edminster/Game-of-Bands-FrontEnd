@@ -21,6 +21,27 @@ input {
     border-radius: 0.3em;
     border: 2px solid #ccc;
 }
+
+input[type="file"] {
+    /* min-width: 10em; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* background: #f1f1f1; */
+    /* color: #1f1f1f; */
+    /* margin-top: 2em; */
+    /* visibility: hidden; */
+    /* border: none; */
+}
+input[type="file"]:focus {
+    /* min-width: 10em; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* background: #f1f1f1; */
+    /* color: #1f1f1f; */
+    /* visibility: hidden; */
+    border: none;
+}
+
+
+
 textarea {
     margin-top: 0.17em;
     min-width: 40em;
@@ -44,4 +65,50 @@ input:focus, textarea:focus {
 .TextInput {
     margin-top: 1em;
 
+}
+
+.SubmitSongForm__FileInput::-webkit-file-upload-button {
+    display: none;
+}
+
+.SubmitSongForm__FileInput {
+    color: #1f1f1f;
+    border: none;
+}
+
+.SubmitSongForm__FileInput::before {
+    content: 'Upload an Audio File';
+    display: inline-block;
+
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    /* margin: 0.5em 0.3em; */
+    background: #7c61f7;
+    border: 2px solid #7c61f7;
+    border-radius: 0.2em;
+    /* display: block; */
+    padding: 0.6em 1em;
+    text-decoration: none;
+    color: #f1f1f1;
+    font-size: 1.1em;
+    cursor: pointer;
+    /* margin: inherit; */
+    margin-left: -1em;
+    /* font-family: 'Monserrat', Arial, Helvetica, sans-serif; */
+}
+
+.SubmitSongForm__FileInput:hover::before {
+    /* color: black; */
+    /* width: 700px; */
+    /* width: 500px; */
+    /* transition: 1.0s ease; */
+    background: rgb(238, 46, 255);
+    border: 2px solid rgb(209, 43, 224);
+    transition: 0.3s ease;
+}
+
+
+.TextInput__FileLabel {
+    margin-top: 0.5em;
+    display: block;
+    /* border: 1px solid red; */
 }

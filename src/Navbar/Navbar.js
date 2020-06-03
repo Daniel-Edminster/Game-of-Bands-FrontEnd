@@ -37,7 +37,8 @@ class Navbar extends Component {
 
         let url = "https://danieledminster.com:8080/sessioncheck";
         fetch(url, { 
-                credentials: "include", 
+                credentials: "include",
+                method: 'GET' 
         })
         .then(res => res.json())
         .then(res => {

@@ -8,9 +8,11 @@ import SubmitSong from './SubmitSong/SubmitSong';
 // import Admin from './Admin/Admin';
 import AdminSongDisplay from './AdminSongDisplay/AdminSongDisplay';
 import SongEditor from './SongEditor/SongEditor';
+import Bandit from './Bandit/Bandit';
 // import AudioPlayer from './AudioPlayer/AudioPlayer';
 // require('wavesurfer.js');
-
+import ReactJkMusicPlayer from "react-jinke-music-player";
+import "react-jinke-music-player/assets/index.css";
 
 
 
@@ -20,7 +22,8 @@ class App extends Component {
 
       this.state = {
         auth: false,
-        content: 'You must be logged in to do that.'
+        content: 'You must be logged in to do that.',
+        playerActive: false
       }
   }
 
@@ -28,6 +31,46 @@ class App extends Component {
     this.sessionCheck();
   }
 
+  startPlayer = event => {
+    // console.log('player', this.state, event.target);
+
+    console.log(event.target.getAttribute('data-name'),event.target.getAttribute('data-artists'), event.target.getAttribute('data-musicsrc'));
+    if(!this.state.playerActive) {
+        this.setState({ playerActive: true, 
+          opts: {
+            mode: 'full',
+            toggleMode: false,
+            autoHiddenCover: true,
+            glassBg: true,
+            // showPlayMode: false,
+            showThemeSwitch: false,
+            showDownload: false,
+            preload: true,
+          },
+          audio:  [{
+            name: event.target.getAttribute('data-name'),
+            singer: event.target.getAttribute('data-artists'),
+            musicSrc: event.target.getAttribute('data-musicsrc')
+          }]
+        });
+          
+        
+    }
+    else {
+      this.setState({ 
+        audioList: {
+          name: event.target['data-name'],
+          singer: event.target['data-artists'],
+          musicSrc: event.target['data-url']
+        }
+      })
+    }
+    
+  }
+
+  play = event => {
+      // this.setState({ currentSong: event.target['data-url']})
+  }
 
   sessionCheck = () => {
 
@@ -61,13 +104,15 @@ class App extends Component {
 
 
   render() {
+    
       return (
         <div className="App">
           <Router>
           <Navbar />
           <Switch>
-            <Route exact path="/"  component={SongDisplay}/>
+            <Route exact path="/"  render={() => <SongDisplay play={this.startPlayer} />}/>
             <Route exact path="/submitsong"  component={SubmitSong}/>
+            <Route  exact path="/bandit/:user" render={routerProps => <Bandit {...routerProps} {...this.state} /> }  />
             
             {/* <Route exact path="/admin"  component={Admin}/> */}
           {/* <SongDisplay /> */}
@@ -84,6 +129,7 @@ class App extends Component {
               <Switch>
                
                 <Route  path="/admin/edit/:id" render={routerProps => <SongEditor {...routerProps} /> }  />
+                
                 <Route exact path="/admin" component={AdminSongDisplay} />         
                
               </Switch>          
@@ -103,6 +149,14 @@ class App extends Component {
 
 
           </Switch>
+          {this.state.playerActive === true ? 
+          
+            
+            <ReactJkMusicPlayer {...this.state.opts} audioLists={this.state.audio} />
+          :
+            '' 
+          }
+
           </Router>
           {/* <AudioPlayer url="https://api.soundcloud.com/tracks/797171077/stream" /> */}
 

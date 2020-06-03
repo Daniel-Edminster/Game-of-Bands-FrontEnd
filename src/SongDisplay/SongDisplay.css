@@ -9,8 +9,8 @@
     margin: 5.5em auto 0 auto;
     display: flex;
     flex-flow: column nowrap;
-    animation-name: fadeIn;
-    animation-duration: 0.5s;
+    /* animation-name: fadeIn;
+    animation-duration: 0.5s; */
     /* transition: 0.5s ease; */
 }
 .SongDisplay__Item:nth-child(odd) {
@@ -27,6 +27,8 @@
     /* border-bottom: 1px solid #ccc; */
     /* background: rgba(0,0,0, 0.5); */
     align-items: center;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
 
 }
 .SongDisplay__Item:hover {
@@ -204,7 +206,29 @@
 }
 
 
+.MyLoader {
+    margin-top: 6em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-self: start;
+    /* animation-name: fadeIn;
+    animation-duration: 0.3s; */
+}
+
+.ProfileLink {
+    text-decoration: none;
+    color: rgb(175, 110, 228);
+}
+.ProfileLink:hover {
+    color: rgb(187, 29, 187);
+    transition: 0.3s ease;
+}
 @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
