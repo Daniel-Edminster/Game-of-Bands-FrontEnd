@@ -33,7 +33,7 @@ class TextInput extends Component {
                 <div className="TextInput">
                 <label>{label}:</label>
                 <div>
-                <input type={type} placeholder={ph} name={name} className="SubmitSongForm" required value={propvalue} onChange={propfunction} /> 
+                <input type={type} placeholder={ph} name={name} className="SubmitSongForm" required  value={this.props.val} onChange={propfunction} /> 
                 </div>
                 </div>
             );
@@ -55,7 +55,7 @@ class TextInput extends Component {
                 <div className="TextInput">
                 <label>{label}:</label>
                 <div>
-                <textarea name={name} className="SubmitSongForm" placeholder={ph} required onChange={propfunction}>{propvalue}</textarea> 
+                <textarea name={name} className="SubmitSongForm" placeholder={ph} required onChange={propfunction}>{this.props.val}</textarea> 
                 </div>
                 </div>
             );

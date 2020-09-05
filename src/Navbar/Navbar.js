@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Redirect} from 'react-router-dom';
 import Logo from '../img/GOBLogo-Clean.png';
 import './Navbar.css';
+import { BASE_URL } from '../constants';
 
 class Navbar extends Component {
     constructor(){
@@ -10,7 +11,7 @@ class Navbar extends Component {
 
         let userLinkArray = [{
             name: 'Login',
-            href: 'https://danieledminster.com:8080/auth/reddit',
+            href: `${BASE_URL}/auth/reddit`,
             class: 'Navbar__Flexbox__Right__Item__Button'
         }];
 
@@ -35,7 +36,7 @@ class Navbar extends Component {
         // let ls = window.localStorage;
 
 
-        let url = "https://danieledminster.com:8080/sessioncheck";
+        let url = `${BASE_URL}/sessioncheck`;
         fetch(url, { 
                 credentials: "include",
                 method: 'GET' 
@@ -114,7 +115,7 @@ class Navbar extends Component {
             this.userLinkArray = [
             { 
                 name: 'Login',
-                href: 'https://danieledminster.com:8080/auth/reddit',
+                href: `${BASE_URL}/auth/reddit`,
                 class: 'Navbar__Flexbox__Right__Item__Button'
             }];
 

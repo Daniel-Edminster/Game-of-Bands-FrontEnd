@@ -1,19 +1,27 @@
 import React, { useState, Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
-// import songs from './data/songs.json';
 import Navbar from './Navbar/Navbar';
 import SongDisplay from './SongDisplay/SongDisplay';
 import SubmitSong from './SubmitSong/SubmitSong';
-// import Admin from './Admin/Admin';
+
 import AdminSongDisplay from './AdminSongDisplay/AdminSongDisplay';
 import SongEditor from './SongEditor/SongEditor';
 import Bandit from './Bandit/Bandit';
-// import AudioPlayer from './AudioPlayer/AudioPlayer';
-// require('wavesurfer.js');
+
 import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
 
+import { BASE_URL } from './constants';
+
+
+/*********
+ * TODO:
+ * Change all instances of sessioncheck() as a prop to useContext hook/api 
+ * Change component folder structure -> src/components/ComponentName/ComponentName.js
+ * Setup temporary production URL
+ * fetch -> axios for compatibility
+ */
 
 
 class App extends Component {
@@ -74,7 +82,7 @@ class App extends Component {
 
   sessionCheck = () => {
 
-    let url = "https://danieledminster.com:8080/sessioncheck";
+    let url = `${BASE_URL}/sessioncheck`;
     fetch(url, { 
             credentials: "include", 
     })

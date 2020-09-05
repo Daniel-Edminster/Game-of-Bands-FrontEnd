@@ -4,6 +4,8 @@ import './SongEditor.css';
 import TextInput from '../TextInput/TextInput';
 import he from 'he';
 
+import { BASE_URL } from './../constants';
+
 
 class SongEditor extends Component {
     constructor(){
@@ -26,7 +28,8 @@ class SongEditor extends Component {
                 vocalsvote: '',
                 number: '0'
             },
-            auth: false
+            auth: false,
+            loaded: false
 
         }
     }
@@ -44,7 +47,7 @@ class SongEditor extends Component {
 
     sessionCheck = () => {
 
-        let url = "https://danieledminster.com:8080/sessioncheck";
+        let url = `${BASE_URL}/sessioncheck`;
         fetch(url, { 
                 credentials: "include", 
         })
@@ -80,9 +83,9 @@ class SongEditor extends Component {
 
         if(this.validURL(this.state.formValues.url))
         {
-            let baseURL = 'https://danieledminster.com:8080/update/';
+            let updateURL = `${BASE_URL}/update/`;
             let id = this.props.match.params.id;
-            let fullURL = baseURL+id;
+            let fullURL = updateURL+id;
             // alert(event.target.textContent);
 
 
@@ -137,8 +140,8 @@ class SongEditor extends Component {
 
     getSongByID = () => {
         let id = this.props.match.params.id;
-        let baseURL = "https://danieledminster.com:8080/song/id/";
-        let fullURL = baseURL+id;
+        let songURL = `${BASE_URL}/song/id/`;
+        let fullURL = songURL+id;
 
         fetch(fullURL, {
             credentials: 'include',
@@ -151,6 +154,50 @@ class SongEditor extends Component {
                 formValues: res
             })
         })
+    }
+
+    setFormMusician = event => {
+        let formValues = this.state.formValues;
+        formValues.music = event.target.value;
+        this.setState({
+            formValues: formValues
+        })
+    }
+
+    setFormLyricist = event => {
+        let formValues = this.state.formValues;
+        formValues.lyrics = event.target.value;
+        this.setState({
+            formValues: formValues
+        })
+    }
+
+    setFormVocals = event => {
+        let formValues = this.state.formValues;
+        formValues.vocals = event.target.value;
+        this.setState({
+            formValues: formValues
+        })
+    }
+
+    setFormLyricsheet = event => {
+        let formValues = this.state.formValues;
+        formValues.lyricsheet = event.target.value;
+        this.setState({
+            formValues: formValues
+        })
+    }
+
+    setFormSongName = event => {
+        let formValues = this.state.formValues;
+        formValues.name = event.target.value;
+        this.setState({
+            formValues: formValues
+        }) 
+    }
+
+    logState = () => {
+        console.log(this.state.formValues);
     }
 
     handleFormUpdate = (event) => {
@@ -216,7 +263,7 @@ class SongEditor extends Component {
         }
         else {
 
-
+            console.log('log form response', this.state.formResponse);
             let { name, music, lyrics, vocals} = this.state.formResponse;
             let successResponse = `Song: "${name}" successfully updated for ${music}, ${lyrics}, and ${vocals}.`;
             return ( 
@@ -250,21 +297,21 @@ class SongEditor extends Component {
                         {/* {this.props.match.params} */}
                     
                         {this.state.submitted === false ? '': this.renderFormResponse()}
-                        {("song" in this.state ) ? 
+                        {(this.state.song !== undefined ) ? 
 
                         <>
                         <form action="/edit" method="PATCH">
-                        <TextInput name="name" label="Song Name" placeholder={this.state.song.name} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="url" label="URL" placeholder={this.state.song.url} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="music" label="Musician" placeholder={this.state.song.music} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="lyrics" label="Lyricist" placeholder={this.state.song.lyrics} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="lyrics" label="Vocals" placeholder={this.state.song.vocals} propfunction={this.handleFormUpdate} />
-                        <TextInput name="lyricsheet" label="Lyricsheet" value={he.decode(this.state.song.lyricsheet)} type="textarea" propfunction={this.handleFormUpdate} />
+                        <TextInput name="name" label="Song Name" val={this.state.formValues.name} propfunction={this.setFormSongName} placeholder="" /> 
+                        <TextInput name="url" label="URL" val={this.state.formValues.url} propfunction={this.handleFormUpdate} /> 
+                        <TextInput name="music" label="Musician" val={this.state.formValues.music} propfunction={this.setFormMusician} placeholder=""/> 
+                        <TextInput name="lyrics" label="Lyricist" val={this.state.formValues.lyrics} propfunction={this.setFormLyricist} placeholder=""/> 
+                        <TextInput name="lyrics" label="Vocals" val={this.state.formValues.vocals} propfunction={this.setFormVocals} placeholder=""/>
+                        <TextInput name="lyricsheet" label="Lyricsheet" val={he.decode(this.state.formValues.lyricsheet)} type="textarea" propfunction={this.setFormLyricsheet} placeholder="" />
                         <div className="SongEditor__Votesbox">
-                        <TextInput name="votes" label="Track Votes" placeholder={this.state.song.votes} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="musicvote" label="Music Votes" placeholder={this.state.song.musicvote} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="lyricsvote" label="Lyrics Votes" placeholder={this.state.song.lyricsvote} propfunction={this.handleFormUpdate} /> 
-                        <TextInput name="vocalsvote" label="Vocals Votes" placeholder={this.state.song.vocalsvote} propfunction={this.handleFormUpdate} />
+                        <TextInput name="votes" label="Track Votes" val={this.state.formValues.votes} propfunction={this.handleFormUpdate} /> 
+                        <TextInput name="musicvote" label="Music Votes" val={this.state.formValues.musicvote} propfunction={this.handleFormUpdate} /> 
+                        <TextInput name="lyricsvote" label="Lyrics Votes" val={this.state.formValues.lyricsvote} propfunction={this.handleFormUpdate} /> 
+                        <TextInput name="vocalsvote" label="Vocals Votes" val={this.state.formValues.vocalsvote} propfunction={this.handleFormUpdate} />
                     
                         </div>
                         <div className="SongEditor__Submit">

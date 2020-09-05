@@ -2,17 +2,28 @@ import React, { Component } from 'react';
 import TextInput from '../TextInput/TextInput';
 import './SubmitSong.css';
 import axios from 'axios';
-import e from 'cors';
+// import e from 'cors';
+
+// import Autocomplete from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Checkbox from '@material-ui/core/Checkbox';
+
 import he from 'he';
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
+
+import { BASE_URL } from '../constants';
 
 
 class SubmitSong extends Component {
     constructor() {
         super();
 
-        let postURL = 'https://danieledminster.com:8080/create';
+        let postURL =  `${BASE_URL}/create`;
 
         this.state = {
             content: 'You must be logged in to do that.',
@@ -22,9 +33,9 @@ class SubmitSong extends Component {
             formPlaceholders: {
                 name: 'Never Gonna Give You Up',
                 url: 'https://soundcloud.com/doomgrip776/rick-astley-never-gonna-give-you-up-airhorn-remix',
-                music: 'BedroomProducer',
-                lyrics: 'DistinguishedWriter',
-                vocals: 'AntiVoxxer',
+                music: 'A musician',
+                lyrics: 'A lyricist',
+                vocals: 'A vocals person',
                 lyricsheet: 'I wrote you but you still ain\'t callin\''
             },
             formValues: {
@@ -39,7 +50,11 @@ class SubmitSong extends Component {
             auth: false,
             uploading: false,
             progressText: 'Uploading...',
-            formClass: ''
+            formClass: '',
+            users: [],
+            user1NF: false,
+            user2NF: false,
+            user3NF: false
 
         }
 
@@ -48,14 +63,31 @@ class SubmitSong extends Component {
 
     componentDidMount() {
         this.sessionCheck();
+        this.getAutoCompleteUsers();
         // this.content = 'You must be logged in to do that.';
     }
+
+    getAutoCompleteUsers = () => {
+        let url = "https://danieledminster.com:8080/users";
+        axios({
+            url: url,
+            method: 'GET',
+            withCredentials: true
+        }).then(res => {
+            this.setState({ users: res.data });
+        }).catch(err => console.log(err));
+
+    }
+
+    toggleUser1 = () => {
+        this.setState({ user1NF: !this.state.user1NF });
+    };
 
     sessionCheck = () => {
         // let ls = window.localStorage;
 
 
-        let url = "https://danieledminster.com:8080/sessioncheck";
+        let url = `${BASE_URL}/sessioncheck`;
         fetch(url, { 
                 credentials: "include", 
         })
@@ -95,6 +127,15 @@ class SubmitSong extends Component {
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
         return !!pattern.test(str);
       }
+
+    
+    setTypeUserAutocomplete = (event) => {
+        let typedUser = event.target.value;
+        console.log(event.target);
+        let users = this.state.users;
+        users.push(typedUser);
+        this.setState({ users: users});
+    }
 
     handleSongSubmit = (event) => {
         event.preventDefault();
@@ -372,14 +413,45 @@ class SubmitSong extends Component {
                     : '' }
                         <h2>Submit a new song</h2>
                         <div className={"SubmitSong__Formbox " + this.state.formClass}>
-                        <TextInput label="Song Name" placeholder={placeholders.name} name="name" value={formValues.name} propfunction={this.setFormSongName} />
+                        <TextInput label="Song Name" placeholder={placeholders.name} name="name" val={formValues.name} propfunction={this.setFormSongName} />
                         {/* <TextInput label="Song URL" type="url" placeholder={placeholders.url} name="url" value={formValues.url} propfunction={this.handleFormUpdate}/> */}
 
-                        <TextInput label="Song file" placeholder="My Greatest hit.mp3" name="song" type="file" propfunction={this.setFormSongFile} />
-                        <TextInput label="Musician" placeholder={placeholders.music} name="music" value={formValues.music} propfunction={this.setFormMusician}/>
-                        <TextInput label="Lyricist" placeholder={placeholders.lyrics} name="lyrics" value={formValues.lyrics} propfunction={this.setFormLyricist}/>
-                        <TextInput label="Vocalist" placeholder={placeholders.vocals} name="vocals" value={formValues.vocals} propfunction={this.setFormVocals}/>
-                        <TextInput label="Lyrics" type="textarea" placeholder={placeholders.lyricsheet} name="lyricsheet" value={formValues.lyricsheet} propfunction={this.setFormLyricsheet}/>
+                        {/* {/* <TextInput label="Song file" placeholder="My Greatest hit.mp3" name="song" type="file" propfunction={this.setFormSongFile} /> */}
+                        {/* <TextInput label="Musician" placeholder={placeholders.music} name="music" val={formValues.music} propfunction={this.setFormMusician}/>
+                        <TextInput label="Lyricist" placeholder={placeholders.lyrics} name="lyrics" val={formValues.lyrics} propfunction={this.setFormLyricist}/>
+                        <TextInput label="Vocalist" placeholder={placeholders.vocals} name="vocals" val={formValues.vocals} propfunction={this.setFormVocals}/> */}
+
+                        <br /><br />
+
+                        <div className="UserFormFlex">
+
+                        {this.state.user1NF === false ? 
+                        <Autocomplete
+                        id="combo-box-demo"
+                        options={this.state.users}
+                        getOptionLabel={(option) => option}
+                        style={{ width: 500 }} 
+                        // fullWidth={true}
+                        renderInput={(params) => <TextField {...params} label="Select a user" variant="filled" onchange={this.setTypeUserAutocomplete} />} />
+
+                        : 
+                            <TextField style={{ width: 500 }}  label="Enter a user" variant="filled" />
+                        }
+                        
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={this.state.user1InDB}
+                                onChange={this.toggleUser1}
+                                name="checkedB"
+                                color="primary"
+                            />
+                            }
+                            label="Not Found?"
+                        />
+                        </div>
+
+                        <TextInput label="Lyrics" type="textarea" placeholder={placeholders.lyricsheet} name="lyricsheet" val={formValues.lyricsheet} propfunction={this.setFormLyricsheet}/>
                         <div>
                         <button className="SubmitSong__Formbox__Button" onClick={this.handleSongSubmit}>Submit</button>
   

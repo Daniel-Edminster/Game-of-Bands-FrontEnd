@@ -6,6 +6,7 @@ import axios from 'axios';
 import ReactLoading from 'react-loading';
 
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../constants';
 
 
 class SongDisplay extends Component {
@@ -33,7 +34,8 @@ class SongDisplay extends Component {
     getSongList = () => {
         let bandit = this.props.match.params.user;
         console.log('starting song api request');
-        axios.get(`https://danieledminster.com:8080/user/${bandit}`)
+        let fullURL = `${BASE_URL}/user/${bandit}`;
+        axios.get(fullURL)
         .then(res => {
             console.log("bandit songs axios: ", res);
             this.setState({ Songs: res.data }, this.getSongJSX);    
@@ -73,11 +75,11 @@ class SongDisplay extends Component {
                             {trackTrophy}
                                 </div>
                                 <div className="SongDisplay__Item__TrackVotes">{song.votes}</div>
-                            <div className="SongDisplay__Item__Musician"><Link to={`/bandit/${song.music}`} className="ProfileLink" onClick={this.forceUpdate}>{song.music}</Link></div>
+                            <div className="SongDisplay__Item__Musician"><Link to={`/bandit/${song.music}`} className="ProfileLink" >{song.music}</Link></div>
                             <div className="SongDisplay__Item__MusicVotes">{song.musicvote}</div>
-                            <div className="SongDisplay__Item__Lyricist"><Link to={`/bandit/${song.lyrics}`} className="ProfileLink" onClick={this.forceUpdate}>{song.lyrics}</Link></div>
+                            <div className="SongDisplay__Item__Lyricist"><Link to={`/bandit/${song.lyrics}`} className="ProfileLink" >{song.lyrics}</Link></div>
                             <div className="SongDisplay__Item__LyricVotes">{song.lyricsvote}</div>
-                            <div className="SongDisplay__Item__Vocals"><Link to={`/bandit/${song.vocals}`} className="ProfileLink" onClick={this.forceUpdate}>{song.vocals}</Link></div>
+                            <div className="SongDisplay__Item__Vocals"><Link to={`/bandit/${song.vocals}`} className="ProfileLink" >{song.vocals}</Link></div>
                             <div className="SongDisplay__Item__VocalVotes">{song.vocalsvote}</div>
                             
                             

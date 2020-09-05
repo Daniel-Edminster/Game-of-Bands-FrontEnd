@@ -4,6 +4,7 @@ import './AdminSongDisplay.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import SongEditor from '../SongEditor/SongEditor';
 import ReactLoading from 'react-loading';
+import { BASE_URL } from '../constants';
 
 class AdminSongDisplay extends Component {
     constructor(){
@@ -19,7 +20,7 @@ class AdminSongDisplay extends Component {
     }
 
     componentDidMount() {
-        let url = 'https://danieledminster.com:8080/all/desc';
+        let url = `${BASE_URL}/all/desc`;
         fetch(url)
         .then(res => res.json())
         .then(res => {
@@ -35,7 +36,7 @@ class AdminSongDisplay extends Component {
         let songID = event.target.getAttribute("data-id");
 
         if(window.confirm("Are you sure you want to delete this song?")) {
-            let url = `https://danieledminster.com:8080/delete/${songID}`;
+            let url = `${BASE_URL}/delete/${songID}`;
             fetch(url, { 
                 method: 'DELETE',
                 credentials: 'include'

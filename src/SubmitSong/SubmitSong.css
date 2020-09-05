@@ -174,3 +174,13 @@ li {
     from {opacity: 0;}
     to {opacity: 1;}
 }
+
+.MuiFilledInput-root {
+    background: white !important;
+  }
+
+  .UserFormFlex {
+      display: flex;
+      flex-flow: row nowrap;
+      
+  }
